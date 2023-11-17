@@ -12,6 +12,9 @@ class Player(pg.sprite.Sprite):
         self.image, self.rect = res.load_image("Sprite Template Front.png", -1)
         self.speed = 5  # Speed of movement
 
+        self.rect.x = 590
+        self.rect.y = 200
+
    # def update(self):
    #     """move the fist based on the mouse position"""
    #     pos = pg.mouse.get_pos()
