@@ -43,6 +43,8 @@ def main():
         for event in pg.event.get():
            if event.type == pg.QUIT:
                 going = False
+           elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+                going = False
 
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
