@@ -10,24 +10,23 @@ class Player(pg.sprite.Sprite):
 
         pg.sprite.Sprite.__init__(self)  # call Sprite initializer
         self.image, self.rect = res.load_image("Sprite Template Front.png", -1)
-        self.fist_offset = (-235, -80)
-        self.punching = False
+        self.speed = 5  # Speed of movement
 
-    def update(self):
-        """move the fist based on the mouse position"""
-        pos = pg.mouse.get_pos()
-        self.rect.topleft = pos
-        self.rect.move_ip(self.fist_offset)
-        if self.punching:
-            self.rect.move_ip(15, 25)
-
-    def punch(self, target):
-        """returns true if the fist collides with the target"""
-        if not self.punching:
-            self.punching = True
-            hitbox = self.rect.inflate(-5, -5)
-            return hitbox.colliderect(target.rect)
-
-    def unpunch(self):
-        """called to pull the fist back"""
-        self.punching = False
+   # def update(self):
+   #     """move the fist based on the mouse position"""
+   #     pos = pg.mouse.get_pos()
+   #     self.rect.topleft = pos
+   #     self.rect.move_ip(self.fist_offset)
+   #     if self.punching:
+   #         self.rect.move_ip(15, 25)
+#
+   # def punch(self, target):
+   #     """returns true if the fist collides with the target"""
+   #     if not self.punching:
+   #         self.punching = True
+   #         hitbox = self.rect.inflate(-5, -5)
+   #         return hitbox.colliderect(target.rect)
+#
+   # def unpunch(self):
+   #     """called to pull the fist back"""
+   #     self.punching = False

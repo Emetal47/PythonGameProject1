@@ -28,8 +28,10 @@ def main():
     pg.display.flip()
 
     # Prepare Game Objects
-    player = Player()
-    allsprites = pg.sprite.RenderPlain(player)
+    all_sprites = pg.sprite.Group()
+    sprite = Player()
+    all_sprites.add(sprite)
+
     clock = pg.time.Clock()
 
     # Main Loop
@@ -39,16 +41,23 @@ def main():
 
         # Handle Input Events
         for event in pg.event.get():
-            if event.type == pg.QUIT:
-                going = False
-            elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+           if event.type == pg.QUIT:
                 going = False
 
-        allsprites.update()
+        keys = pg.key.get_pressed()
+        if keys[pg.K_a]:
+            sprite.rect.x -= sprite.speed
+        elif keys[pg.K_d]:
+            sprite.rect.x += sprite.speed
+        elif keys[pg.K_w]:
+            sprite.rect.y -= sprite.speed
+        elif keys[pg.K_s]:
+            sprite.rect.y += sprite.speed
+
 
         # Draw Everything
         screen.blit(background, (0, 0))
-        allsprites.draw(screen)
+        all_sprites.draw(screen)
         pg.display.flip()
 
     pg.quit()
