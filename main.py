@@ -7,7 +7,7 @@ from classes.player import Player
 def main():
     # initialize everything
     pg.init()
-    screen = pg.display.set_mode((1280,600), pg.SCALED)
+    screen = pg.display.set_mode((1920,1080), pg.SCALED)
     pg.display.set_caption("Game Project 1")
     pg.mouse.set_visible(False)
 
