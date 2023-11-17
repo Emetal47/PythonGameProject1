@@ -30,9 +30,11 @@ class Resources():
         return image, image.get_rect()
 
 
-    def load_sound(name):
+    def load_sound(self, name):
         main_dir = os.path.split(os.path.abspath(__file__))[0]
+        main_dir = main_dir.replace("classes", "")
         data_dir = os.path.join(main_dir, "data")
+        fullname = os.path.join(data_dir, name)
 
         class NoneSound:
             def play(self):
