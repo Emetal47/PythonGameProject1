@@ -50,17 +50,22 @@ def main():
                 going = False
            elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 going = False
-
+        keys2 = pg.KEYUP
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
             sprite.rect.x -= sprite.speed
             sprite.leftWalk(sprite.rect.x, sprite.rect.y)
         elif keys[pg.K_d]:
             sprite.rect.x += sprite.speed
+            sprite.rightWalk(sprite.rect.x, sprite.rect.y)
         elif keys[pg.K_w]:
             sprite.rect.y -= sprite.speed
+            sprite.upWalk(sprite.rect.x, sprite.rect.y)
         elif keys[pg.K_s]:
             sprite.rect.y += sprite.speed
+            sprite.downWalk(sprite.rect.x, sprite.rect.y)
+        elif keys2:
+            sprite.defaultPose(sprite.rect.x, sprite.rect.y)
        
         # Draw Everything
         screen.blit(background, (0, 0))

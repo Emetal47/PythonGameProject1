@@ -14,13 +14,41 @@ class Player(pg.sprite.Sprite):
         self.rect.x = 960
         self.rect.y = 540
 
-   def leftWalk(self, x,y):
+   def leftWalk(self, x, y):
       res = Resources()
       self.image, self.rect = res.load_image("player", "Sprite Template Left Walk.png", -1)
 
       self.rect.x = x 
-      self.rect.y = y 
-   
+      self.rect.y = y
+
+   def defaultPose(self, x, y):
+      res = Resources()
+      self.image, self.rect = res.load_image("player", "Sprite Template Front.png", -1)
+
+      self.rect.x = x
+      self.rect.y = y
+
+   def rightWalk(self, x, y):
+      res = Resources()
+      self.image, self.rect = res.load_image("player", "Sprite Template Right Walk.png", -1)
+
+      self.rect.x = x
+      self.rect.y = y
+
+   def upWalk(self, x, y):
+      res = Resources()
+      self.image, self.rect = res.load_image("player", "Sprite Template Back.png", -1)
+
+      self.rect.x = x
+      self.rect.y = y
+
+   def downWalk(self, x, y):
+      res = Resources()
+      self.image, self.rect = res.load_image("player", "Sprite Template Front.png", -1)
+
+      self.rect.x = x
+      self.rect.y = y
+
    # def update(self):
    #     """move the fist based on the mouse position"""
    #     pos = pg.mouse.get_pos()
