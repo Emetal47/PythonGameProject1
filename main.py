@@ -1,12 +1,9 @@
 # import modules
 import pygame as pg
 
-
-
 # import classes
 from classes.player import Player
 from classes.resources import Resources
-from pygame import mixer 
 
 def main():
     # initialize everything
@@ -31,6 +28,9 @@ def main():
     screen.blit(background, (0, 0))
     pg.display.flip()
 
+    # Load background music
+    music = Resources()
+    music.load_music('MyBrothersWife.mp3')
 
     # Prepare Game Objects
     all_sprites = pg.sprite.Group()
@@ -38,15 +38,6 @@ def main():
     all_sprites.add(sprite)
 
     clock = pg.time.Clock()
-
-
-    #Play Music (create music handler in resources.py)
-    name = 'data/08 My Brothers Wife.mp3'
-    mixer.init()
-    mixer.music.load(name)
-    mixer.music.set_volume(0.1)
-    mixer.music.play()
-
 
     # Main Loop
     going = True
@@ -63,15 +54,14 @@ def main():
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
             sprite.rect.x -= sprite.speed
+            sprite.leftWalk(sprite.rect.x, sprite.rect.y)
         elif keys[pg.K_d]:
             sprite.rect.x += sprite.speed
         elif keys[pg.K_w]:
             sprite.rect.y -= sprite.speed
         elif keys[pg.K_s]:
             sprite.rect.y += sprite.speed
-
-
-
+       
         # Draw Everything
         screen.blit(background, (0, 0))
         all_sprites.draw(screen)

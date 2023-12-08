@@ -3,18 +3,24 @@ from classes.resources import Resources
 
 # class Player:
 class Player(pg.sprite.Sprite):
-    """moves a clenched fist on the screen, following the mouse"""
+   """moves a clenched fist on the screen, following the mouse"""
 
-    def __init__(self):
+   def __init__(self):
         res = Resources()
-
         pg.sprite.Sprite.__init__(self)  # call Sprite initializer
-        self.image, self.rect = res.load_image("Sprite Template Front.png", -1)
+        self.image, self.rect = res.load_image("player", "Sprite Template Front.png", -1)
         self.speed = 5  # Speed of movement
 
         self.rect.x = 960
         self.rect.y = 540
 
+   def leftWalk(self, x,y):
+      res = Resources()
+      self.image, self.rect = res.load_image("player", "Sprite Template Left Walk.png", -1)
+
+      self.rect.x = x 
+      self.rect.y = y 
+   
    # def update(self):
    #     """move the fist based on the mouse position"""
    #     pos = pg.mouse.get_pos()
