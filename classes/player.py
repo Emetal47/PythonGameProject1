@@ -14,6 +14,24 @@ class Player(pg.sprite.Sprite):
         self.rect.x = 960
         self.rect.y = 540
 
+   def input(self):
+      keys2 = pg.KEYUP
+      keys = pg.key.get_pressed()
+      if keys[pg.K_a]:
+         self.rect.x -= self.speed
+         self.leftWalk(self.rect.x, self.rect.y)
+      elif keys[pg.K_d]:
+         self.rect.x += self.speed
+         self.rightWalk(self.rect.x, self.rect.y)
+      elif keys[pg.K_w]:
+         self.rect.y -= self.speed
+         self.upWalk(self.rect.x, self.rect.y)
+      elif keys[pg.K_s]:
+         self.rect.y += self.speed
+         self.downWalk(self.rect.x, self.rect.y)
+      elif keys2:
+         self.defaultPose(self.rect.x, self.rect.y)
+
    def leftWalk(self, x, y):
       res = Resources()
       self.image, self.rect = res.load_image("player", "Sprite Template Left Walk.png", -1)
