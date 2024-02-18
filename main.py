@@ -41,8 +41,6 @@ def main():
 
     # Main Loop
     going = True
-    counter = 0
-    
     while going:
         clock.tick(60)
 
@@ -52,8 +50,7 @@ def main():
                 going = False
            elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 going = False
-
-        counter = sprite.input(counter)
+        sprite.input()
 
         # Draw Everything
         screen.blit(background, (0, 0))
