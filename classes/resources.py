@@ -1,9 +1,9 @@
 import os
 import pygame as pg
-from pygame import mixer 
+from pygame import mixer
 
-class Resources():
 
+class Resources:
     # Resource handlers
     if not pg.font:
         print("Fonts Disabled")
@@ -13,7 +13,7 @@ class Resources():
     def load_image(self, type, name, colorkey=None, scale=1):
         main_dir = os.path.split(os.path.abspath(__file__))[0]
         main_dir = main_dir.replace("classes", "")
-        
+
         data_dir = os.path.join(main_dir, "data/playerAnimations/" + type)
         fullname = os.path.join(data_dir, name)
 
@@ -29,7 +29,6 @@ class Resources():
                 colorkey = image.get_at((0, 0))
             image.set_colorkey(colorkey, pg.RLEACCEL)
         return image, image.get_rect()
-
 
     def load_sound(self, name):
         main_dir = os.path.split(os.path.abspath(__file__))[0]
@@ -48,7 +47,7 @@ class Resources():
         sound = pg.mixer.Sound(fullname)
 
         return sound
-    
+
     def load_music(self, track_name):
         folder_path = 'data/gameMusic/'
         mixer.init()
