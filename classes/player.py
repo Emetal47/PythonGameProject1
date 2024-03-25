@@ -71,25 +71,4 @@ class Player(pg.sprite.Sprite):
     def update(self):
         self.input()
 
-        # self.leftWalk()
-        # self.defaultPose()
-        # self.rightWalk()
-        # self.upWalk()
-        # self.downWalk()
-    #     """move the fist based on the mouse position"""
-    #     pos = pg.mouse.get_pos()
-    #     self.rect.topleft = pos
-    #     self.rect.move_ip(self.fist_offset)
-    #     if self.punching:
-    #         self.rect.move_ip(15, 25)
-#
-# def punch(self, target):
-#     """returns true if the fist collides with the target"""
-#     if not self.punching:
-#         self.punching = True
-#         hitbox = self.rect.inflate(-5, -5)
-#         return hitbox.colliderect(target.rect)
-#
-# def unpunch(self):
-#     """called to pull the fist back"""
-#     self.punching = False
+
