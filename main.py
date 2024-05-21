@@ -1,13 +1,13 @@
 # import modules
 import pygame as pg
-import math
+import random
 # import classes
 from classes.player import Player
+from classes.coin import Coin
 from classes.resources import Resources
 
 WIDTH = 1920
 HEIGHT = 1080
-
 
 def main():
     # initialize everything
@@ -38,7 +38,13 @@ def main():
 
     # Load background music
     music = Resources()
-    music.load_music('MyBrothersWife.mp3')
+    #music.load_music('MyBrothersWife.mp3')
+
+    #define colours
+    BG = (50, 50, 50)
+    GREEN = (0, 255, 0)
+    RED = (255, 0, 0)
+    BLUE = (0, 0, 255)
 
     class Camera(pg.sprite.Group):
         def __init__(self):
@@ -61,15 +67,51 @@ def main():
     # Prepare Game Objects
     camera = Camera()
     all_sprites = pg.sprite.Group()
+
+    # player object
     pl_sprite = Player()
+    player_mask = pg.mask.from_surface(pl_sprite.image)
+
+    # coin object
+    coin_sprite = Coin()
+    coin_mask = pg.mask.from_surface(coin_sprite.image)
+
     all_sprites.add(pl_sprite)
+    all_sprites.add(coin_sprite)
+
+    # coin count text
+    coin_count = 0
+    counter_incremented = False
+    font = pg.font.Font(None, 64)
 
     clock = pg.time.Clock()
 
     # Main Loop
     going = True
+
+
     while going:
         clock.tick(60)
+
+        #check mask overlap
+        if player_mask.overlap(coin_mask, (coin_sprite.rect.x - pl_sprite.rect.x, coin_sprite.rect.y - pl_sprite.rect.y)):
+            all_sprites.remove(coin_sprite)
+            if not counter_incremented:
+                coin_count += 1
+                counter_incremented = True 
+
+         # Convert the counter to a string
+        text_to_display = str(coin_count)
+        text = font.render(text_to_display, True, (255, 215, 0))
+
+        background.fill((0, 0, 0), (100, 50, text.get_width(), text.get_height())) 
+        background.blit(text, (100, 50))
+        pg.display.flip()
+
+        
+        #draw rectangle
+        #coin_rect.fill(col)
+        #background.blit(bullet, coin_sprite.rect)
 
         # Handle Input Events
         for event in pg.event.get():
